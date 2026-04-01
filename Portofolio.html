@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofolio</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- AOS -->
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        body {
+            font-family: "Inter", sans-serif;
+            background: #f5f7fb;
+            color: #1e293b;
+        }
+
+        /* ================= BODY ================= */
+        body {
+            font-family: "Inter", "Segoe UI", sans-serif;
+            background: #f5f7fb;
+            margin: 0;
+            color: #1e293b;
+        }
+
+        /* ================= NAVBAR ================= */
+        .navbar-box {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 18px 0;
+            border-bottom: 1px solid #e2e8f0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar-inner {
+            width: 95%;
+            max-width: 1200px;
+            margin: auto;
+            padding: 0 10px;
+        }
+
+        .navbar-box h4 {
+            color: #1e293b;
+            letter-spacing: 1px;
+        }
+
+        /* NAV LINK */
+        .nav-underline .nav-link {
+            color: #64748b;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .nav-underline .nav-link:hover {
+            color: #2563eb;
+        }
+
+        .nav-underline .nav-link.active {
+            color: #2563eb;
+            border-bottom: 2px solid #2563eb;
+        }
+
+        /* FOOTER */
+        footer {
+            background: #0f172a;
+            color: #cbd5f5;
+        }
+
+
+        /* SECTION */
+        .portfolio-section {
+            margin-top: 60px;
+            padding: 50px 20px;
+            background: linear-gradient(135deg, #e0e7ff, #f8fafc);
+            border-radius: 25px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.05);
+        }
+
+        .section-title {
+            text-align: center;
+            font-weight: 700;
+            margin-bottom: 40px;
+        }
+
+        /* CARD */
+        .portfolio-card {
+            background: #ffffff;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            transition: 0.3s;
+        }
+
+        .portfolio-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(37, 99, 235, 0.2);
+        }
+
+        .portfolio-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .portfolio-body {
+            padding: 20px;
+        }
+
+        .portfolio-title {
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .portfolio-desc {
+            font-size: 14px;
+            color: #475569;
+            margin-bottom: 15px;
+        }
+
+        .badge-skill {
+            display: inline-block;
+            background: #dbeafe;
+            color: #1d4ed8;
+            padding: 6px 12px;
+            border-radius: 50px;
+            font-size: 12px;
+            margin: 3px;
+        }
+
+        .btn-detail {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 20px;
+            background: #2563eb;
+            color: #fff;
+            border-radius: 50px;
+            font-size: 13px;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .btn-detail:hover {
+            background: #1d4ed8;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <div class="navbar-box">
+        <div
+            class="navbar-inner d-flex justify-content-between align-items-center">
+            <h4 class="fw-bold m-0">CV Digital</h4>
+
+            <ul class="nav nav-underline">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Beranda</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="TentangSaya.html">Tentang</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="Pendidikan.html">Pendidikan</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="Pengalaman.html">Pengalaman</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="Prestasi.html">Prestasi</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="Portofolio.html">Portofolio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="Kemampuan.html">Kemampuan</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="Kontak.html">Kontak</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="portfolio-section">
+
+            <h2 class="section-title" data-aos="fade-down">
+                Portofolio Saya
+            </h2>
+
+            <div class="row g-4">
+                <div class="row justify-content-center">
+
+                    <div class="col-md-6" data-aos="fade-up">
+                        <div class="portfolio-card">
+                            <img src="foto/portal.png" class="portfolio-img">
+
+                            <div class="portfolio-body text-center">
+
+                                <div class="portfolio-title fs-5">Portal Berita</div>
+
+                                <div class="portfolio-desc">
+                                    Website portal berita yang saya kembangkan menggunakan HTML, CSS, dan JavaScript.
+                                    Website ini menampilkan informasi secara terstruktur, responsif, dan mudah diakses oleh pengguna.
+                                </div>
+
+                                <span class="badge-skill">HTML</span>
+                                <span class="badge-skill">CSS</span>
+                                <span class="badge-skill">JavaScript</span>
+
+                                <br>
+
+                                <a href="https://github.com/syazwani1705/portal-berita" target="_blank" class="btn-detail ms-2">
+                                    Source Code
+                                </a>
+                                <a href="20380_PortalBerita/index.php" target="_blank" class="btn-detail ms-2">
+                                    Live Demo
+                                </a>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer
+        class="text-center text-white py-3 mt-auto"
+        style="background-color: #0f1f3d">
+        © 2026 Syazwani | Let’s grow together.
+    </footer>
+    <!-- AOS -->
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+    </script>
+
+</body>
+
+</html>
