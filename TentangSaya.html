@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tentang Saya</title>
+
+    <!-- Bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- AOS -->
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+        background: #f5f7fb;
+        color: #1e293b;
+      }
+
+      /* ================= BODY ================= */
+      body {
+        font-family: "Inter", "Segoe UI", sans-serif;
+        background: #f5f7fb;
+        margin: 0;
+        color: #1e293b;
+      }
+
+      /* ================= NAVBAR ================= */
+      .navbar-box {
+        width: 100%;
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(10px);
+        padding: 18px 0;
+        border-bottom: 1px solid #e2e8f0;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+      }
+
+      .navbar-inner {
+        width: 95%;
+        max-width: 1200px;
+        margin: auto;
+        padding: 0 10px;
+      }
+
+      .navbar-box h4 {
+        color: #1e293b;
+        letter-spacing: 1px;
+      }
+
+      /* NAV LINK */
+      .nav-underline .nav-link {
+        color: #64748b;
+        font-weight: 500;
+        transition: 0.3s;
+      }
+
+      .nav-underline .nav-link:hover {
+        color: #2563eb;
+      }
+
+      .nav-underline .nav-link.active {
+        color: #2563eb;
+        border-bottom: 2px solid #2563eb;
+      }
+
+      /* FOOTER */
+      footer {
+        background: #0f172a;
+        color: #cbd5f5;
+      }
+
+      .tentang-section {
+        margin-top: 60px;
+        padding: 50px;
+        background: linear-gradient(135deg, #e0e7ff, #f8fafc);
+        border-radius: 25px;
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.05);
+      }
+
+      .foto-profil {
+        width: 220px;
+        height: 220px;
+        object-fit: cover;
+        border-radius: 50%;
+        border: 5px solid #2563eb;
+        box-shadow: 0 10px 25px rgba(37, 99, 235, 0.3);
+      }
+
+      .nama {
+        font-size: 28px;
+        font-weight: 700;
+        margin-top: 20px;
+      }
+
+      .role {
+        color: #2563eb;
+        font-weight: 500;
+        margin-bottom: 15px;
+      }
+
+      .deskripsi {
+        line-height: 1.8;
+        color: #475569;
+      }
+
+      .info-box {
+        background: #ffffff;
+        padding: 20px;
+        border-radius: 15px;
+        margin-top: 20px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+      }
+
+      .info-item {
+        margin-bottom: 10px;
+        font-size: 14px;
+      }
+
+      .info-item strong {
+        color: #0f172a;
+      }
+
+      .badge-minat {
+        display: inline-block;
+        background: #dbeafe;
+        color: #1d4ed8;
+        padding: 8px 15px;
+        border-radius: 50px;
+        font-size: 13px;
+        margin: 5px;
+        transition: 0.3s;
+      }
+
+      .badge-minat:hover {
+        background: #2563eb;
+        color: #fff;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- NAVBAR -->
+    <div class="navbar-box">
+      <div
+        class="navbar-inner d-flex justify-content-between align-items-center"
+      >
+        <h4 class="fw-bold m-0">CV Digital</h4>
+
+        <ul class="nav nav-underline">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Beranda</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="TentangSaya.html">Tentang</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="Pendidikan.html">Pendidikan</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="Pengalaman.html">Pengalaman</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="Prestasi.html">Prestasi</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="Portofolio.html">Portofolio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="Kemampuan.html">Kemampuan</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="Kontak.html">Kontak</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="tentang-section">
+        <div class="row align-items-center">
+          <!-- KIRI (FOTO) -->
+          <div class="col-md-4 text-center" data-aos="zoom-in">
+            <img src="foto/fotoaini2.jpeg" class="foto-profil" />
+            <div class="nama">Syazwani Qurratu Aini</div>
+            <div class="role">Pelajar SMKN 1 Bawang</div>
+          </div>
+
+          <!-- KANAN (DESKRIPSI) -->
+          <div class="col-md-8" data-aos="fade-left">
+            <h3 class="mb-3 fw-bold">Tentang Saya</h3>
+
+            <p class="deskripsi">
+              Saya merupakan pelajar SMKN 1 Bawang yang memiliki minat pada
+              bidang teknologi dan desain, khususnya dalam pengembangan web.
+              Saya senang mempelajari hal baru dan terus mengembangkan kemampuan
+              dalam menciptakan tampilan website yang sederhana, fungsional, dan
+              nyaman digunakan.
+            </p>
+
+            <p class="deskripsi">
+              Saya memiliki motivasi tinggi untuk terus belajar, berkembang,
+              serta siap beradaptasi dan berkontribusi dalam lingkungan kerja
+              profesional maupun dalam berbagai proyek.
+            </p>
+
+            <!-- MINAT -->
+            <div class="mt-3">
+              <span class="badge-minat">Web Development</span>
+              <span class="badge-minat">UI Design</span>
+              <span class="badge-minat">Frontend</span>
+              <span class="badge-minat">Creative Design</span>
+            </div>
+
+            <!-- INFO TAMBAHAN -->
+            <div class="info-box mt-4">
+              <div class="info-item">
+                <strong>Nama:</strong> Syazwani Qurratu Aini
+              </div>
+              <div class="info-item">
+                <strong>Sekolah:</strong> SMKN 1 Bawang
+              </div>
+              <div class="info-item"><strong>Status:</strong> Pelajar</div>
+              <div class="info-item">
+                <strong>Hobi:</strong> Bermain alat musik & membaca buku
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer
+      class="text-center text-white py-3 mt-auto"
+      style="background-color: #0f1f3d"
+    >
+      © 2026 Syazwani | Let’s grow together.
+    </footer>
+
+    <!-- AOS -->
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script>
+      AOS.init({
+        duration: 1000,
+        once: true,
+      });
+    </script>
+  </body>
+</html>

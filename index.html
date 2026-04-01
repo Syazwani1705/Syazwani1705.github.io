@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Beranda</title>
+
+    <!-- Bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <style>
+      /* ================= ANIMASI ================= */
+      .fade-up {
+        opacity: 0;
+        transform: translateY(30px);
+        animation: fadeUp 1s ease forwards;
+      }
+
+      .fade-up.delay-1 {
+        animation-delay: 0.3s;
+      }
+      .fade-up.delay-2 {
+        animation-delay: 0.6s;
+      }
+      .fade-up.delay-3 {
+        animation-delay: 0.9s;
+      }
+
+      @keyframes fadeUp {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* ================= BODY ================= */
+      body {
+        font-family: "Inter", sans-serif;
+        background: #f5f7fb;
+        color: #1e293b;
+      }
+      /* ================= BODY ================= */
+      body {
+        font-family: "Inter", "Segoe UI", sans-serif;
+        background: #f5f7fb;
+        margin: 0;
+        color: #1e293b;
+      }
+
+      /* ================= NAVBAR ================= */
+      .navbar-box {
+        width: 100%;
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(10px);
+        padding: 18px 0;
+        border-bottom: 1px solid #e2e8f0;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+      }
+
+      .navbar-inner {
+        width: 95%;
+        max-width: 1200px;
+        margin: auto;
+        padding: 0 10px;
+      }
+
+      .navbar-box h4 {
+        color: #1e293b;
+        letter-spacing: 1px;
+      }
+
+      /* NAV LINK */
+      .nav-underline .nav-link {
+        color: #64748b;
+        font-weight: 500;
+        transition: 0.3s;
+      }
+
+      .nav-underline .nav-link:hover {
+        color: #2563eb;
+      }
+
+      .nav-underline .nav-link.active {
+        color: #2563eb;
+        border-bottom: 2px solid #2563eb;
+      }
+
+      /* FOOTER */
+      footer {
+        background: #0f172a;
+        color: #cbd5f5;
+      }
+
+      /* ================= HERO ================= */
+      .hero {
+        position: relative;
+        overflow: hidden;
+        background: linear-gradient(135deg, #e0e7ff, #f8fafc);
+        padding: 140px 20px;
+        border-radius: 25px;
+        box-shadow: 0 15px 50px rgba(0, 0, 0, 0.05);
+
+        max-width: 1100px;
+        margin: 60px auto;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        width: 300px;
+        height: 300px;
+        background: #3b82f6;
+        opacity: 0.2;
+        border-radius: 50%;
+        top: -80px;
+        left: -80px;
+        filter: blur(80px);
+        animation: float 6s ease-in-out infinite;
+      }
+
+      .hero::after {
+        content: "";
+        position: absolute;
+        width: 200px;
+        height: 200px;
+        background: #6366f1;
+        opacity: 0.2;
+        border-radius: 50%;
+        bottom: -60px;
+        right: -60px;
+        filter: blur(70px);
+        animation: float 6s ease-in-out infinite;
+      }
+
+      .circle-extra {
+        position: absolute;
+        width: 120px;
+        height: 120px;
+        background: #2563eb;
+        opacity: 0.15;
+        border-radius: 50%;
+        top: 40%;
+        left: 10%;
+        filter: blur(60px);
+        animation: float 6s ease-in-out infinite;
+      }
+
+      @keyframes float {
+        0% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-15px);
+        }
+        100% {
+          transform: translateY(0px);
+        }
+      }
+
+      .hero .container {
+        position: relative;
+        z-index: 2;
+      }
+
+      .intro {
+        font-size: 20px;
+        color: #64748b;
+      }
+
+      .nama {
+        font-size: 45px;
+        font-weight: 700;
+        color: #0f172a;
+        margin: 15px 0;
+      }
+
+      .subjudul {
+        font-size: 22px;
+        color: #2563eb;
+        margin-bottom: 25px;
+      }
+
+      .deskripsi {
+        max-width: 650px;
+        margin: 0 auto 35px;
+        color: #475569;
+        line-height: 1.8;
+        font-size: 17px;
+      }
+
+      .btn-custom {
+        display: inline-block;
+        padding: 14px 32px;
+        background: linear-gradient(135deg, #2563eb, #3b82f6);
+        color: #ffffff;
+        text-decoration: none;
+        border-radius: 50px;
+        font-weight: 500;
+        transition: 0.3s;
+        box-shadow: 0 6px 18px rgba(37, 99, 235, 0.3);
+      }
+
+      .btn-custom:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 25px rgba(37, 99, 235, 0.4);
+      }
+
+      footer {
+        background: #0f172a;
+        color: #cbd5f5;
+        text-align: center;
+        padding: 20px;
+        margin-top: 50px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- NAVBAR -->
+    <div class="navbar-box">
+      <div
+        class="navbar-inner d-flex justify-content-between align-items-center"
+      >
+        <h4 class="fw-bold m-0">CV Digital</h4>
+
+        <ul class="nav nav-underline">
+          <li class="nav-item">
+            <a class="nav-link active" href="index.html">Beranda</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="TentangSaya.html">Tentang</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="Pendidikan.html">Pendidikan</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="Pengalaman.html">Pengalaman</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="Prestasi.html">Prestasi</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="Portofolio.html">Portofolio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="Kemampuan.html">Kemampuan</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="Kontak.html">Kontak</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- HERO -->
+    <div class="container">
+      <section class="hero">
+        <div class="circle-extra"></div>
+
+        <div class="container text-center">
+          <p class="intro fade-up">Selamat datang di website CV saya!</p>
+
+          <h1 class="nama fade-up delay-1">Syazwani Qurratu Aini</h1>
+
+          <h3 class="subjudul fade-up delay-2">Pelajar SMKN 1 Bawang</h3>
+
+          <p class="deskripsi fade-up delay-3">
+            Saya memiliki minat pada teknologi dan desain, serta berfokus pada
+            pengembangan web yang sederhana, fungsional, dan nyaman digunakan.
+          </p>
+
+          <a href="TentangSaya.html" class="btn-custom fade-up delay-3">
+            Kenali Saya Lebih Jauh
+          </a>
+        </div>
+      </section>
+    </div>
+
+    <!-- FOOTER -->
+    <footer
+      class="text-center text-white py-3 mt-auto"
+      style="background-color: #0f1f3d"
+    >
+      © 2026 Syazwani | Let’s grow together.
+    </footer>
+  </body>
+</html>
