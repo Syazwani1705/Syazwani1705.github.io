@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Login</title>
+    <style>
+        * { box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #dfd3c3 0%, #c7b198 100%);
+        }
+
+        .login-card {
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(93, 64, 55, 0.2);
+            width: 100%;
+            max-width: 380px;
+            text-align: center;
+        }
+
+        .login-card h2 { color: #5d4037; margin-bottom: 10px; font-size: 28px; }
+        .login-card p { color: #8d6e63; font-size: 14px; margin-bottom: 30px; }
+
+        .input-group {
+            position: relative;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #5d4037;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 12px 15px;
+            padding-right: 45px; 
+            border: 2px solid #eee;
+            border-radius: 10px;
+            outline: none;
+            transition: 0.3s;
+            background: #fafafa;
+        }
+
+        .input-group input:focus { border-color: #a68b6d; background: #fff; }
+
+      
+        .toggle-password {
+            position: absolute;
+            right: 15px;
+            top: 38px;
+            cursor: pointer;
+            color: #8d6e63;
+            font-size: 18px;
+            user-select: none;
+            
+        }
+
+        button.btn-login {
+            width: 100%;
+            padding: 12px;
+            background: #8d6e63;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 10px;
+        }
+
+        button.btn-login:hover { background: #5d4037; transform: translateY(-2px); }
+
+
+        #overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(4px);
+            z-index: 99;
+        }
+
+        #modal {
+            display: none;
+            position: fixed;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            z-index: 100;
+            width: 280px;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .btn-ok {
+            background: #a68b6d;
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            float: right;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-card">
+        <h2>Form Login</h2>
+        <p>Silakan masuk ke akun Anda</p>
+        
+        <div class="input-group">
+            <label>Username</label>
+            <input type="text" id="username" placeholder="Masukkan username">
+        </div>
+
+        <div class="input-group">
+            <label>Password</label>
+            <input type="password" id="password" placeholder="Masukkan password">
+            
+            <span class="toggle-password" id="toggleBtn" onclick="togglePass()">👁️</span>
+        </div>
+
+        <button class="btn-login" onclick="cekLogin()">LOGIN</button>
+    </div>
+
+  
+    <div id="overlay"></div>
+    <div id="modal">
+        <h3 id="statusTitle">Info</h3>
+        <p id="pesan"></p>
+        <div style="overflow: hidden; width: 100%;">
+            <button class="btn-ok" onclick="tutupModal()">OK</button>
+        </div>
+    </div>
+
+    <script>
+       
+        function togglePass() {
+            const passInput = document.getElementById('password');
+            const toggleBtn = document.getElementById('toggleBtn');
+            
+            if (passInput.type === "password") {
+                passInput.type = "text";
+                toggleBtn.innerText = "🙈"; 
+            } else {
+                passInput.type = "password";
+                toggleBtn.innerText = "👁️"; 
+            }
+        }
+
+        
+        function cekLogin() {
+            const user = document.getElementById('username').value;
+            const pass = document.getElementById('password').value;
+            const modal = document.getElementById('modal');
+            const overlay = document.getElementById('overlay');
+            const pesan = document.getElementById('pesan');
+            const title = document.getElementById('statusTitle');
+
+           
+            if (user === "Aini" && pass === "12345") {
+                title.innerText = "Login Berhasil";
+                title.style.color = "#2ecc71";
+                pesan.innerHTML = "Selamat datang kembali!";
+            } else {
+                title.innerText = "Login Gagal";
+                title.style.color = "#e74c3c";
+                pesan.innerHTML = "Username atau password salah.";
+            }
+            
+            modal.style.display = 'block';
+            overlay.style.display = 'block';
+        }
+
+        function tutupModal() {
+            document.getElementById('modal').style.display = 'none';
+            document.getElementById('overlay').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
