@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Pastel Pro</title>
+    <style>
+        @import url('https://googleapis.com');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            height: 100vh; display: flex; justify-content: center; align-items: center;
+            background: #fdf2f5; font-family: 'Varela Round', sans-serif; overflow: hidden;
+        }
+
+        .bg-canvas {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
+            background: linear-gradient(45deg, #fce4ec, #e1f5fe, #fff9c4, #f3e5f5);
+            background-size: 400% 400%; animation: gradientBG 12s infinite alternate ease-in-out;
+        }
+        @keyframes gradientBG { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+
+        .title-wrapper { display: flex; justify-content: center; margin-bottom: 20px; }
+        .app-title {
+            font-family: 'Fredoka', sans-serif; font-size: 1.3rem; color: white;
+            background: #b5838d; padding: 10px 35px; border-radius: 50px;
+            border: 4px solid white; box-shadow: 0 10px 25px rgba(181, 131, 141, 0.4);
+            letter-spacing: 4px; animation: float 3s infinite ease-in-out;
+        }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+
+        /* MAIN WRAPPER UNTUK SLIDE */
+        .main-container {
+            display: flex; align-items: center; position: relative;
+        }
+
+        .container {
+            display: flex; padding: 25px; background: rgba(255, 255, 255, 0.45);
+            backdrop-filter: blur(20px); border-radius: 40px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.08); border: 2px solid rgba(255, 255, 255, 0.8);
+            z-index: 10;
+        }
+
+        .calculator { width: 340px; transition: width 0.4s ease; }
+        .scientific-mode .calculator { width: 560px; }
+
+        .display-container {
+            background: rgba(233, 237, 201, 0.8); padding: 20px; border-radius: 25px;
+            margin-bottom: 20px; border: 3px solid rgba(204, 213, 174, 0.4);
+        }
+        #prev-op { color: #8a9a5b; font-size: 1rem; min-height: 1.4rem; text-align: right; font-family: 'Share Tech Mono', monospace; margin-bottom: 5px; }
+        #display { width: 100%; background: none; border: none; color: #556b2f; font-size: 2.5rem; text-align: right; outline: none; font-family: 'Share Tech Mono', monospace; }
+
+        /* BUTTONS */
+        .main-layout { display: flex; }
+        .scientific-panel { display: none; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-right: 15px; border-right: 2px dashed rgba(0,0,0,0.1); padding-right: 15px; }
+        .scientific-mode .scientific-panel { display: grid; }
+        .buttons { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; flex-grow: 1; }
+
+        button {
+            height: 65px; width: 65px; border-radius: 50%; border: none;
+            background: white; color: #6d6875; font-size: 1.1rem; font-weight: bold;
+            cursor: pointer; transition: all 0.1s; box-shadow: 0 4px 0 #e0e0e0;
+            display: flex; align-items: center; justify-content: center;
+        }
+        button:active { transform: translateY(3px); box-shadow: 0 1px 0 #e0e0e0; background: #f5f5f5 !important; }
+
+        .operator { background: #faedcd; color: #b5838d; box-shadow: 0 4px 0 #e9d8a6; }
+        .clear { background: #ffb4a2; color: white; box-shadow: 0 4px 0 #e5989b; }
+        .mode-btn { background: #cdb4db; color: white; box-shadow: 0 4px 0 #b392ac; font-size: 0.8rem; }
+        .equals { background: #b5e48c; color: #4a7c44; grid-column: span 4; width: 100%; border-radius: 30px; box-shadow: 0 4px 0 #99d070; font-size: 1.4rem; }
+
+        /* TOMBOL TOGGLE RIWAYAT */
+        .history-toggle {
+            width: 40px; height: 80px; background: #b5838d; color: white;
+            border-radius: 0 20px 20px 0; border: 2px solid white; border-left: none;
+            cursor: pointer; display: flex; align-items: center; justify-content: center;
+            font-size: 1.5rem; transition: 0.3s; z-index: 5;
+        }
+        .history-toggle:hover { background: #a5737d; }
+
+        /* SIDEBAR RIWAYAT */
+        .history-panel { 
+            width: 0; padding: 0; opacity: 0;
+            background: rgba(255, 255, 255, 0.3); border-radius: 0 30px 30px 0; 
+            border: none; display: flex; flex-direction: column;
+            transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden; white-space: nowrap;
+        }
+        .history-panel.open { 
+            width: 240px; padding: 20px; opacity: 1; margin-left: -2px;
+            border: 2px solid white; border-left: none;
+        }
+
+        .history-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+        .history-title { font-weight: bold; font-size: 1rem; color: #b5838d; }
+        .clear-hist-btn { background: #ffb4a2 !important; color: white !important; font-size: 0.7rem; padding: 5px 12px; border-radius: 15px; border: none; cursor: pointer; width: auto; height: auto; box-shadow: 0 2px 0 #e5989b; }
+        .history-list { font-size: 0.9rem; list-style: none; max-height: 320px; overflow-y: auto; }
+        .history-item { padding: 10px; margin-bottom: 8px; background: rgba(255,255,255,0.7); border-radius: 12px; border-left: 5px solid #b5e48c; }
+    </style>
+</head>
+<body>
+
+    <div class="bg-canvas"></div>
+
+    <div class="wrapper">
+        <div class="title-wrapper"><h1 class="app-title">KALKULATOR</h1></div>
+        
+        <div class="main-container">
+            <!-- KALKULATOR -->
+            <div class="container" id="calc-container">
+                <div class="calculator">
+                    <div class="display-container" id="screen">
+                        <div id="prev-op"></div>
+                        <input type="text" id="display" value="0" readonly>
+                    </div>
+                    <div class="main-layout">
+                        <div class="scientific-panel">
+                            <button class="operator" onclick="appendSci('Math.sin')">sin</button>
+                            <button class="operator" onclick="appendSci('Math.cos')">cos</button>
+                            <button class="operator" onclick="appendSci('Math.tan')">tan</button>
+                            <button class="operator" onclick="appendSci('Math.sqrt')">√</button>
+                            <button class="operator" onclick="appendSci('Math.log')">ln</button>
+                            <button class="operator" onclick="appendOp('**')">^</button>
+                            <button class="operator" onclick="append('Math.PI')">π</button>
+                            <button class="operator" onclick="append('Math.E')">e</button>
+                        </div>
+                        <div class="buttons">
+                            <button class="mode-btn" onclick="toggleSci()">MODE</button>
+                            <button class="operator" onclick="handleParenthesis()">( )</button>
+                            <button class="operator" onclick="appendOp('%')">%</button>
+                            <button class="clear" onclick="clearAll()">AC</button>
+                            
+                            <button onclick="append('7')">7</button><button onclick="append('8')">8</button><button onclick="append('9')">9</button>
+                            <button class="operator" onclick="appendOp('/')">÷</button>
+                            
+                            <button onclick="append('4')">4</button><button onclick="append('5')">5</button><button onclick="append('6')">6</button>
+                            <button class="operator" onclick="appendOp('*')">×</button>
+                            
+                            <button onclick="append('1')">1</button><button onclick="append('2')">2</button><button onclick="append('3')">3</button>
+                            <button class="operator" onclick="appendOp('-')">−</button>
+                            
+                            <button onclick="append('0')">0</button><button onclick="append('.')">.</button>
+                            <button class="operator" onclick="deleteLast()">⌫</button>
+                            <button class="operator" onclick="appendOp('+')">+</button>
+                            
+                            <button class="equals" onclick="calculate()">=</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TOGGLE BUTTON -->
+            <div class="history-toggle" id="hist-toggle" onclick="toggleHistory()">›</div>
+
+            <!-- SIDEBAR RIWAYAT -->
+            <div class="history-panel" id="hist-panel">
+                <div class="history-header">
+                    <span class="history-title">RIWAYAT</span>
+                    <button class="clear-hist-btn" onclick="clearHistory()">Hapus</button>
+                </div>
+                <ul id="history-list" class="history-list"></ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const display = document.getElementById('display');
+        const prevOp = document.getElementById('prev-op');
+        const histPanel = document.getElementById('hist-panel');
+        const histToggle = document.getElementById('hist-toggle');
+        const historyList = document.getElementById('history-list');
+        let currentInput = "";
+        let isResultDisplayed = false;
+
+        function append(char) {
+            if (isResultDisplayed) { currentInput = ""; prevOp.innerText = ""; isResultDisplayed = false; }
+            currentInput += char;
+            updateDisplay();
+        }
+
+        function appendOp(op) {
+            if (isResultDisplayed) { isResultDisplayed = false; }
+            const lastChar = currentInput.slice(-1);
+            if (currentInput === "" && op !== '-') return;
+            if (['+', '-', '*', '/', '%'].includes(lastChar)) { currentInput = currentInput.slice(0, -1) + op; } 
+            else { currentInput += op; }
+            updateDisplay();
+        }
+
+        function appendSci(func) {
+            if (isResultDisplayed) { currentInput = ""; isResultDisplayed = false; }
+            const lastChar = currentInput.slice(-1);
+            if (!isNaN(lastChar) && lastChar !== "") currentInput += "*";
+            currentInput += func + "(";
+            updateDisplay();
+        }
+
+        function handleParenthesis() {
+            const lastChar = currentInput.slice(-1);
+            const openCount = (currentInput.match(/\(/g) || []).length;
+            const closeCount = (currentInput.match(/\)/g) || []).length;
+            if (openCount > closeCount && !isNaN(lastChar) && lastChar !== "") { currentInput += ")"; } 
+            else { if (currentInput !== "" && (!isNaN(lastChar) || lastChar === ")")) currentInput += "*"; currentInput += "("; }
+            updateDisplay();
+        }
+
+        function updateDisplay() {
+            display.value = currentInput.replace(/\*\*/g, "^").replace(/\*/g, "×").replace(/\//g, "÷").replace(/Math\./g, "") || "0";
+        }
+
+        function calculate() {
+            try {
+                if (currentInput === "") return;
+                let evalString = currentInput.replace(/([+\-*/%])(-)/g, '$1($2');
+                const openCount = (evalString.match(/\(/g) || []).length;
+                const closeCount = (evalString.match(/\)/g) || []).length;
+                if (openCount > closeCount) evalString += ")".repeat(openCount - closeCount);
+
+                let res = eval(evalString);
+                prevOp.innerText = display.value + " =";
+                
+                const li = document.createElement('li');
+                li.className = 'history-item';
+                li.innerHTML = `<div>${display.value}</div><div style="font-weight:bold"> = ${res}</div>`;
+                historyList.prepend(li);
+                
+                currentInput = res.toString();
+                display.value = res;
+                isResultDisplayed = true;
+            } catch (e) { display.value = "Error"; currentInput = ""; }
+        }
+
+        function toggleHistory() {
+            histPanel.classList.toggle('open');
+            histToggle.innerText = histPanel.classList.contains('open') ? '‹' : '›';
+        }
+
+        function clearAll() { currentInput = ""; prevOp.innerText = ""; updateDisplay(); }
+        function deleteLast() { currentInput = currentInput.slice(0, -1); updateDisplay(); }
+        function toggleSci() { document.getElementById('calc-container').classList.toggle('scientific-mode'); }
+        function clearHistory() { historyList.innerHTML = ""; }
+    </script>
+</body>
+</html>
